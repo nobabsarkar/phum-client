@@ -1,6 +1,14 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import {
+  BaseQueryApi,
+  BaseQueryFn,
+  createApi,
+  DefinitionType,
+  FetchArgs,
+  fetchBaseQuery,
+} from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
-import { setUser } from "../features/auth/authSlice";
+import { logOut, setUser } from "../features/auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:5000/api/v1",
@@ -15,7 +23,11 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
-const baseQueryWithRefreshToken = async (args, api, extraOptions) => {
+const baseQueryWithRefreshToken: BaseQueryFn<
+  FetchArgs,
+  BaseQueryApi,
+  DefinitionType
+> = async (args, api, extraOptions): Promise<any> => {
   let result = await baseQuery(args, api, extraOptions);
   console.log(result);
 
@@ -28,15 +40,19 @@ const baseQueryWithRefreshToken = async (args, api, extraOptions) => {
 
     const data = await res.json();
 
-    const user = (api.getState() as RootState).auth.user;
+    if (data?.data?.accessToken) {
+      const user = (api.getState() as RootState).auth.user;
 
-    api.dispatch(
-      setUser({
-        user,
-        token: data.accessToken,
-      })
-    );
-    result = await baseQuery(args, api, extraOptions);
+      api.dispatch(
+        setUser({
+          user,
+          token: data.data.accessToken,
+        })
+      );
+      result = await baseQuery(args, api, extraOptions);
+    } else {
+      api.dispatch(logOut());
+    }
   }
   return result;
 };

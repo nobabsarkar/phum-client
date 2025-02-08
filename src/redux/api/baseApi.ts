@@ -29,7 +29,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<
   BaseQueryApi,
   DefinitionType
 > = async (args, api, extraOptions): Promise<any> => {
-  let result = await baseQuery(args, api, extraOptions);
+  let result = (await baseQuery(args, api, extraOptions)) as any;
 
   if (result?.error?.status === 404) {
     toast.error(result.error.data.message);

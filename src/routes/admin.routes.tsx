@@ -75,6 +75,31 @@ export const adminPaths = [
       },
     ],
   },
+  {
+    name: "Course Management",
+    children: [
+      {
+        name: "Semester Register ",
+        path: "semesters-registered",
+        element: <h1>Semester Register </h1>,
+      },
+      {
+        name: "Register Semesters",
+        path: "registered-semesters",
+        element: <h1>Register Semester</h1>,
+      },
+      {
+        name: "Create Course",
+        path: "create-course",
+        element: <h1>Create Course</h1>,
+      },
+      {
+        name: "Offer Course",
+        path: "offer-course",
+        element: <h1>Offer Course</h1>,
+      },
+    ],
+  },
 ];
 
 // export const adminSidebarItems = adminPaths.reduce(

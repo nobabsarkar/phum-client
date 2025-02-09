@@ -1,7 +1,7 @@
-import { FieldValues, SubmitHandler } from "react-hook-form";
+import { Controller, FieldValues, SubmitHandler } from "react-hook-form";
 import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
 import { useAddStudentMutation } from "../../../redux/features/admin/userManagement.api";
-import { Button, Col, Divider, Row } from "antd";
+import { Button, Col, Divider, Form, Input, Row } from "antd";
 import PHInput from "../../../components/form/PHInput";
 import PHSelect from "../../../components/form/PHSelect";
 import PHDatePicker from "../../../components/form/PHDatePicker";
@@ -87,7 +87,7 @@ const studentDefaultValues = {
 
   // admissionSemester: "6729c359969b35afdfb427a0",
   // academicDepartment: "674d5f58dfd6a8b6cc2e9a0a",
-  profileImage: "http://example.com/images/profile.jpg",
+  // profileImage: "http://example.com/images/profile.jpg",
 };
 
 const CreateStudent = () => {
@@ -112,10 +112,12 @@ const CreateStudent = () => {
     const studentData = {
       password: "student123",
       student: data,
+      // image: data.image,
     };
     // const formData = new FormData();
     // formData.append("data", JSON.stringify(studentData));
     addStudent(studentData);
+    console.log(studentData);
   };
 
   return (
@@ -145,6 +147,22 @@ const CreateStudent = () => {
                 options={bloodGroupOptions}
                 name="bloodGroup"
                 label="Blood Group"
+              />
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <Controller
+                name="image"
+                render={({ field: { onChange, value, ...field } }) => (
+                  <Form.Item label="Picture">
+                    <Input
+                      type="file"
+                      value={value?.fileName}
+                      {...field}
+                      onChange={(e) => onChange(e.target.files?.[0])}
+                      name="image"
+                    />
+                  </Form.Item>
+                )}
               />
             </Col>
 

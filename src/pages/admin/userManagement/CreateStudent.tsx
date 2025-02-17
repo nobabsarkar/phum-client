@@ -63,7 +63,7 @@ const studentDefaultValues = {
   // dateOfBirth: "2000-05-15",
   bloodGroup: "A+",
 
-  email: "abcd@gmail.com",
+  // email: "abcd@gmail.com",
   contactNo: "1234567",
   emergencyContactNo: "0987654321",
   presentAddress: "123 Main St, Springfield, IL",
@@ -91,7 +91,8 @@ const studentDefaultValues = {
 };
 
 const CreateStudent = () => {
-  const [addStudent] = useAddStudentMutation();
+  const [addStudent, { data, error }] = useAddStudentMutation();
+  console.log(data);
 
   const { data: sData, isLoading: sIsLoading } =
     useGetAllSemestersQuery(undefined);
@@ -109,15 +110,17 @@ const CreateStudent = () => {
   }));
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log(data);
     const studentData = {
       password: "student123",
       student: data,
       // image: data.image,
     };
-    // const formData = new FormData();
-    // formData.append("data", JSON.stringify(studentData));
-    addStudent(studentData);
-    console.log(studentData);
+
+    const formData = new FormData();
+    formData.append("data", JSON.stringify(studentData));
+    formData.append("file", data?.image);
+    addStudent(formData);
   };
 
   return (
@@ -159,7 +162,6 @@ const CreateStudent = () => {
                       value={value?.fileName}
                       {...field}
                       onChange={(e) => onChange(e.target.files?.[0])}
-                      name="image"
                     />
                   </Form.Item>
                 )}
@@ -240,9 +242,11 @@ const CreateStudent = () => {
             </Col>
 
             <Divider>Local Guardian</Divider>
+
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <PHInput type="text" name="localGuardian.name" label="Name" />
             </Col>
+
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <PHInput
                 type="text"
@@ -286,6 +290,14 @@ const CreateStudent = () => {
                 name="academicDepartment"
                 label="Academic Department"
               ></PHInput> */}
+            </Col>
+            <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+              <PHSelect
+                options={departmentOptions}
+                disabled={dIsLoading}
+                name="academicFaculty"
+                label="Academic Faculty"
+              ></PHSelect>
             </Col>
           </Row>
 

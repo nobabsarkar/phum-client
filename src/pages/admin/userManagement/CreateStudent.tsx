@@ -91,7 +91,7 @@ const studentDefaultValues = {
 };
 
 const CreateStudent = () => {
-  const [addStudent, { data, error }] = useAddStudentMutation();
+  const [addStudent, { data }] = useAddStudentMutation();
   console.log(data);
 
   const { data: sData, isLoading: sIsLoading } =

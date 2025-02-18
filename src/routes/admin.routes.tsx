@@ -10,6 +10,12 @@ import CreateAcademicDepartment from "../pages/admin/academicManagement/CreateAc
 import AcademicDepartment from "../pages/admin/academicManagement/AcademicDepartment";
 import StudentData from "../pages/admin/userManagement/StudentData";
 import StudentDetails from "../pages/admin/userManagement/StudentDetails";
+import Course from "../pages/admin/courseManagement/Course";
+import CreateCourse from "../pages/admin/courseManagement/CreateCourse";
+import OfferedCourses from "../pages/admin/courseManagement/OfferedCourses";
+import OfferCourse from "../pages/admin/courseManagement/OfferCourse";
+import RegisterSemester from "../pages/admin/courseManagement/RegisterSemester";
+import SemesterRegistration from "../pages/admin/courseManagement/SemesterRegistration";
 
 export const adminPaths = [
   {
@@ -91,24 +97,34 @@ export const adminPaths = [
     name: "Course Management",
     children: [
       {
-        name: "Semester Register ",
-        path: "semesters-registered",
-        element: <h1>Semester Register </h1>,
-      },
-      {
-        name: "Register Semesters",
-        path: "registered-semesters",
-        element: <h1>Register Semester</h1>,
+        name: "Course",
+        path: "create",
+        element: <Course />,
       },
       {
         name: "Create Course",
         path: "create-course",
-        element: <h1>Create Course</h1>,
+        element: <CreateCourse />,
       },
       {
         name: "Offer Course",
         path: "offer-course",
-        element: <h1>Offer Course</h1>,
+        element: <OfferCourse></OfferCourse>,
+      },
+      {
+        name: "Offered Courses",
+        path: "offered-courses",
+        element: <OfferedCourses></OfferedCourses>,
+      },
+      {
+        name: "Register Semesters",
+        path: "registered-semesters",
+        element: <RegisterSemester></RegisterSemester>,
+      },
+      {
+        name: "Semester Register ",
+        path: "semesters-registered",
+        element: <SemesterRegistration></SemesterRegistration>,
       },
     ],
   },

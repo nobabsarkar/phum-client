@@ -23,6 +23,7 @@ const SemesterRegistration = () => {
     label: `${item.name} ${item.year}`,
   }));
 
+  // submit data
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Creating...");
 

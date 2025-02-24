@@ -14,7 +14,7 @@ import Course from "../pages/admin/courseManagement/Course";
 import CreateCourse from "../pages/admin/courseManagement/CreateCourse";
 import OfferedCourses from "../pages/admin/courseManagement/OfferedCourses";
 import OfferCourse from "../pages/admin/courseManagement/OfferCourse";
-import RegisterSemester from "../pages/admin/courseManagement/RegisterSemester";
+import RegisterSemester from "../pages/admin/courseManagement/RegisteredSemester";
 import SemesterRegistration from "../pages/admin/courseManagement/SemesterRegistration";
 
 export const adminPaths = [

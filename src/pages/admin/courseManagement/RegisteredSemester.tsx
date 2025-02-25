@@ -1,8 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Dropdown, Table, TableColumnsType, Tag } from "antd";
 import { TSemester } from "../../../types";
-import { useGetAllRegisteredSemestersQuery } from "../../../redux/features/admin/courseManagement";
+import {
+  useGetAllRegisteredSemestersQuery,
+  useUpdateRegisterSemesterMutation,
+} from "../../../redux/features/admin/courseManagement";
 import moment from "moment";
+import { useState } from "react";
 export type TTableData = Pick<TSemester, "startDate" | "endDate" | "status">;
 
 const items = [
@@ -21,11 +25,15 @@ const items = [
 ];
 
 const RegisteredSemesters = () => {
+  const [semesterId, setSemesterId] = useState("");
+
   const {
     data: semesterData,
 
     isFetching,
   } = useGetAllRegisteredSemestersQuery(undefined);
+
+  const [updateSemesterStatus] = useUpdateRegisterSemesterMutation();
 
   const tableData = semesterData?.data?.map(
     ({ _id, academicSemester, startDate, endDate, status }) => ({
@@ -37,13 +45,19 @@ const RegisteredSemesters = () => {
     })
   );
 
-  const handleStatusDropdown = (data) => {
-    console.log(data);
+  const handleStatusUpdate = (data: any) => {
+    const updateData = {
+      id: semesterId,
+      data: {
+        status: data.key,
+      },
+    };
+    updateSemesterStatus(updateData);
   };
 
   const menuProps = {
     items,
-    onClick: handleStatusDropdown,
+    onClick: handleStatusUpdate,
   };
 
   const columns: TableColumnsType<TTableData> = [
@@ -84,10 +98,10 @@ const RegisteredSemesters = () => {
     {
       title: "Action",
       key: "x",
-      render: () => {
+      render: (item) => {
         return (
-          <Dropdown menu={menuProps}>
-            <Button>Update</Button>
+          <Dropdown menu={menuProps} trigger={["click"]}>
+            <Button onClick={() => setSemesterId(item.key)}>Update</Button>
           </Dropdown>
         );
       },

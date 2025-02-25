@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Form, Select } from "antd";
 import { useEffect } from "react";
 import { Controller, useFormContext, useWatch } from "react-hook-form";
@@ -8,6 +9,7 @@ type TPHSelectProps = {
   options: { value: string; label: string; disabled?: boolean }[] | undefined;
   disabled?: boolean;
   mode?: "multiple" | undefined;
+  onValueChange: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const PHSelectWithWatch = ({

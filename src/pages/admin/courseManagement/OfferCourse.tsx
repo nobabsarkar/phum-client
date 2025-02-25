@@ -4,6 +4,7 @@ import PHInput from "../../../components/form/PHInput";
 import { useGetAcademicFacultiesQuery } from "../../../redux/features/admin/academicManagement.api";
 import PHSelectWithWatch from "../../../components/form/PHSelectWithWatch";
 import { useState } from "react";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 
 const OfferCourse = () => {
   const [id, setId] = useState("");
@@ -16,7 +17,7 @@ const OfferCourse = () => {
     label: item.name,
   }));
 
-  const onSubmit = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
   };
 

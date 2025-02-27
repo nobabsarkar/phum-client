@@ -12,11 +12,13 @@ import {
   useGetAllAcademicDepartmentQuery,
   useGetAllCoursesQuery,
   useGetAllRegisteredSemestersQuery,
+  useGetCourseFacultiesQuery,
 } from "../../../redux/features/admin/courseManagement";
 import { weekDaysOptions } from "../../../types";
 
 const OfferCourse = () => {
   const [courseId, setCourseId] = useState("");
+
   const [id, setId] = useState("");
   // console.log("Inside parent component", id);
 
@@ -55,6 +57,14 @@ const OfferCourse = () => {
       label: item.name,
     })
   );
+
+  const { data: facultiesData, isFetching: fetchingFaculties } =
+    useGetCourseFacultiesQuery(courseId, { skip: !courseId });
+
+  const facultiesOptions = facultiesData?.data?.faculties?.map((item: any) => ({
+    value: item._id,
+    label: item.fullName,
+  }));
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
@@ -97,10 +107,10 @@ const OfferCourse = () => {
           />
 
           <PHSelect
-            // disabled={!courseId || fetchingFaculties}
+            disabled={!courseId || fetchingFaculties}
             name="faculty"
             label="Faculty"
-            // options={facultiesOptions}
+            options={facultiesOptions}
           />
 
           <PHInput type="text" name="section" label="Section" />
@@ -113,8 +123,6 @@ const OfferCourse = () => {
           />
           <PHTimePicker name="startTime" label="Start Time" />
           <PHTimePicker name="endTime" label="End Time" />
-
-          <PHInput disabled={!id} type="text" name="test" label="Test" />
 
           <Button htmlType="submit">Submit</Button>
         </PHForm>

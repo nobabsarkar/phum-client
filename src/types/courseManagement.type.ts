@@ -10,4 +10,5 @@ export type TSemester = {
   maxCredit: number;
   createdAt: string;
   updatedAt: string;
+  name: string;
 };

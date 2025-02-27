@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Col, Flex } from "antd";
 import PHForm from "../../../components/form/PHForm";
 import PHInput from "../../../components/form/PHInput";
@@ -8,14 +9,16 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import PHSelect from "../../../components/form/PHSelect";
 import PHTimePicker from "../../../components/form/PHTimePicker";
 import {
+  useGetAllAcademicDepartmentQuery,
   useGetAllCoursesQuery,
   useGetAllRegisteredSemestersQuery,
 } from "../../../redux/features/admin/courseManagement";
+import { weekDaysOptions } from "../../../types";
 
 const OfferCourse = () => {
   const [courseId, setCourseId] = useState("");
   const [id, setId] = useState("");
-  console.log("Inside parent component", id);
+  // console.log("Inside parent component", id);
 
   const { data: semesterRegistrationData } = useGetAllRegisteredSemestersQuery([
     { name: "sort", value: "year" },
@@ -38,10 +41,20 @@ const OfferCourse = () => {
 
   const { data: coursesData } = useGetAllCoursesQuery(undefined);
 
-  const courseOptions = coursesData?.data?.map((item) => ({
+  const courseOptions = coursesData?.data?.map((item: any) => ({
     value: item._id,
     label: item.title,
   }));
+
+  const { data: academicDepartmentData } =
+    useGetAllAcademicDepartmentQuery(undefined);
+
+  const academicDepartmentOptions = academicDepartmentData?.data?.map(
+    (item) => ({
+      value: item._id,
+      label: item.name,
+    })
+  );
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
@@ -73,7 +86,7 @@ const OfferCourse = () => {
           <PHSelect
             name="academicDepartment"
             label="Academic Department"
-            // options={academicDepartmentOptions}
+            options={academicDepartmentOptions}
           />
 
           <PHSelectWithWatch
@@ -94,7 +107,7 @@ const OfferCourse = () => {
           <PHInput type="text" name="maxCapacity" label="Max Capacity" />
           <PHSelect
             mode="multiple"
-            // options={weekDaysOptions}
+            options={weekDaysOptions}
             name="days"
             label="Days"
           />

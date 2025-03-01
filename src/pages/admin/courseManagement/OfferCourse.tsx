@@ -19,7 +19,7 @@ import { weekDaysOptions } from "../../../types";
 const OfferCourse = () => {
   const [courseId, setCourseId] = useState("");
 
-  const [id, setId] = useState("");
+  // const [id, setId] = useState("");
   // console.log("Inside parent component", id);
 
   const { data: semesterRegistrationData } = useGetAllRegisteredSemestersQuery([

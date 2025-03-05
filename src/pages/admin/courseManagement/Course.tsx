@@ -91,7 +91,7 @@ const Courses = () => {
   );
 };
 
-const AddFacultyModel = ({ facultyInfo }) => {
+const AddFacultyModel = ({ facultyInfo }: any) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: facultiesData } = useGetAllFacultiesQuery(undefined);
 
@@ -102,7 +102,7 @@ const AddFacultyModel = ({ facultyInfo }) => {
     label: item.fullName,
   }));
 
-  const handleSubmit = (data) => {
+  const handleSubmit = (data: any) => {
     const facultyData = {
       courseId: facultyInfo?.key,
       data,

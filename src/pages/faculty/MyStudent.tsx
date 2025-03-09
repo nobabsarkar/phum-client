@@ -5,11 +5,18 @@ import {
   useAddMarkMutation,
   useGetAllFacultyCoursesQuery,
 } from "../../redux/features/faculty/facultyCourses.api";
-import { Button, Modal, Table } from "antd";
+import { Button, Modal, Table, TableColumnsType } from "antd";
 import { useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import PHForm from "../../components/form/PHForm";
 import PHInput from "../../components/form/PHInput";
+
+type TColumns = {
+  key: string;
+  name: string;
+  role: string;
+  showSorterTooltip: string;
+};
 
 const MyStudent = () => {
   const { registerSemesterId, courseId } = useParams();
@@ -29,10 +36,11 @@ const MyStudent = () => {
     })
   );
 
-  const columns = [
+  const columns: TableColumnsType<TColumns> = [
     {
       title: "Name",
       dataIndex: "name",
+      key: "name",
       showSorterTooltip: { target: "full-header" },
     },
 

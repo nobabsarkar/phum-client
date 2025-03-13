@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useGetAllEnrolledCoursesQuery } from "../../redux/features/student/studentCourseManagement.api";
 
 const MySchedule = () => {
@@ -6,13 +7,13 @@ const MySchedule = () => {
 
   return (
     <div>
-      {data?.data?.map((item) => {
+      {data?.data?.map((item: any) => {
         return (
           <div>
             <div>{item.course.title}</div>
             <div>{item.offeredCourse.section}</div>
             <div>
-              {item.offeredCourse.days.map((item) => (
+              {item.offeredCourse.days.map((item: any) => (
                 <span> {item},</span>
               ))}
             </div>

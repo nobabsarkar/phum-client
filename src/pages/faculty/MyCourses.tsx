@@ -2,12 +2,13 @@
 import { Button, Col, Flex } from "antd";
 import PHForm from "../../components/form/PHForm";
 import PHSelect from "../../components/form/PHSelect";
-import { useGetAllFacultyCoursesQuery } from "../../redux/features/faculty/facultyCourses.api";
 import { useNavigate } from "react-router-dom";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+import { useGetAllFacultyCoursesQuery } from "../../redux/features/faculty/facultyCourses.api";
 
 const MyCourses = () => {
   const { data: facultyCoursesData } = useGetAllFacultyCoursesQuery(undefined);
+
   const navigate = useNavigate();
 
   const semesterOption = facultyCoursesData?.data?.map((item: any) => ({
@@ -27,7 +28,7 @@ const MyCourses = () => {
 
   return (
     <Flex justify="center" align="center">
-      <Col span={6}>
+      <Col span={8}>
         <PHForm onSubmit={onSubmit}>
           <PHSelect
             options={semesterOption}

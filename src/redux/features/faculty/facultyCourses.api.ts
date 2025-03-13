@@ -16,7 +16,7 @@ const facultyCourseApi = baseApi.injectEndpoints({
         }
 
         return {
-          url: "/enrolled-courses",
+          url: "/enrolled-course",
           method: "GET",
           params: params,
         };

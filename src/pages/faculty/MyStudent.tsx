@@ -10,6 +10,7 @@ import { useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import PHForm from "../../components/form/PHForm";
 import PHInput from "../../components/form/PHInput";
+import { toast } from "sonner";
 
 type TColumns = {
   key: string;
@@ -18,12 +19,14 @@ type TColumns = {
   showSorterTooltip: string;
 };
 
-const MyStudent = () => {
-  const { registerSemesterId, courseId } = useParams();
-  const { data: facultyCoursesData } = useGetAllFacultyCoursesQuery([
-    { name: "semesterRegistration", vlaue: registerSemesterId },
-    { name: "courseId", vlaue: courseId },
-  ]);
+const MyStudents = () => {
+  // const { registerSemesterId, courseId } = useParams();
+  // const { data: facultyCoursesData } = useGetAllFacultyCoursesQuery([
+  //   { name: "semesterRegistration", vlaue: registerSemesterId },
+  //   { name: "course", vlaue: courseId },
+  // ]);
+
+  const { data: facultyCoursesData } = useGetAllFacultyCoursesQuery(undefined);
 
   const tableData = facultyCoursesData?.data?.map(
     ({ _id, student, semesterRegistration, offeredCourse }: any) => ({
@@ -74,6 +77,7 @@ const AddMarksModal = ({ studentInfo }: any) => {
       semesterRegistration: studentInfo?.semesterRegistration,
       offeredCourse: studentInfo?.offeredCourse,
       student: studentInfo?.student,
+
       courseMarks: {
         classTest1: Number(data.classTest1),
         midTerm: Number(data.midTerm),
@@ -82,9 +86,8 @@ const AddMarksModal = ({ studentInfo }: any) => {
       },
     };
 
-    console.log(studentMark);
     const res = await addMark(studentMark);
-    console.log(res);
+    toast(res?.data?.message);
   };
 
   const showModal = () => {
@@ -112,8 +115,11 @@ const AddMarksModal = ({ studentInfo }: any) => {
           <Button htmlType="submit">Submit</Button>
         </PHForm>
       </Modal>
+      {/* <div>
+        <h1>This is myStudents components</h1>
+      </div> */}
     </>
   );
 };
 
-export default MyStudent;
+export default MyStudents;

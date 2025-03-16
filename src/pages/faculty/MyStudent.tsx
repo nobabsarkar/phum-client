@@ -114,9 +114,6 @@ const AddMarksModal = ({ studentInfo }: any) => {
           <Button htmlType="submit">Submit</Button>
         </PHForm>
       </Modal>
-      {/* <div>
-        <h1>This is myStudents components</h1>
-      </div> */}
     </>
   );
 };

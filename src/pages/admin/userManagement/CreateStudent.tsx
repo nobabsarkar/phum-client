@@ -60,6 +60,7 @@ const studentDefaultValues = {
     middleName: "Israt",
     lastName: "Ravi",
   },
+
   gender: "male",
   // dateOfBirth: "2000-05-15",
   bloodGroup: "A+",
@@ -92,11 +93,10 @@ const studentDefaultValues = {
 };
 
 const CreateStudent = () => {
-  const [addStudent, { data }] = useAddStudentMutation();
-  console.log(data);
-
+  const [addStudent] = useAddStudentMutation();
   const { data: sData, isLoading: sIsLoading } =
     useGetAllSemestersQuery(undefined);
+
   const { data: dData, isLoading: dIsLoading } =
     useGetAllSemestersQuery(undefined);
 
@@ -112,14 +112,14 @@ const CreateStudent = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
-    const studentData = {
+    const faculty = {
       password: "student123",
       student: data,
       // image: data.image,
     };
 
     const formData = new FormData();
-    formData.append("data", JSON.stringify(studentData));
+    formData.append("data", JSON.stringify(faculty));
     formData.append("file", data?.image);
     addStudent(formData);
   };
@@ -140,6 +140,7 @@ const CreateStudent = () => {
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <PHInput type="text" name="name.lastName" label="Last Name" />
             </Col>
+
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <PHSelect options={genderOptions} name="gender" label="Gender" />
             </Col>

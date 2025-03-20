@@ -10,29 +10,8 @@ import {
   useGetAcademicFacultiesQuery,
   useGetAllSemestersQuery,
 } from "../../../redux/features/admin/academicManagement.api";
-
-// const facultyDefaultValues = {
-//   faculty: {
-//     id: "F-0003",
-//     user: "67448fa748bdb77bda11bf28",
-//     designation: "Assistant Professor",
-//     name: {
-//       firstName: "Jane",
-//       middleName: "Marie",
-//       lastName: "Smith",
-//     },
-//     gender: "female",
-//     dateOfBirth: "1990-06-15T00:00:00.000Z",
-//     email: "jane.smith@example.com",
-//     contactNo: "0123456789",
-//     emergencyContactNo: "0987654321",
-//     bloodGroup: "A+",
-//     presentAddress: "456 Elm Street, Springfield",
-//     permanentAddress: "123 Maple Avenue, Shelbyville",
-//     academicDepartment: "674d5f58dfd6a8b6cc2e9a0a",
-//     isDeleted: false,
-//   },
-// };
+import { useGetAllAcademicDepartmentQuery } from "../../../redux/features/admin/courseManagement";
+import { toast } from "sonner";
 
 const facultyDefaultValues = {
   name: {
@@ -42,28 +21,20 @@ const facultyDefaultValues = {
   },
   designation: "Teacher",
   gender: "male",
-  dateOfBirth: "", // Add date if available
+  dateOfBirth: "",
   email: "johndoe5@example.com",
   contactNo: "+8801712345678",
   emergencyContactNo: "+8801812345678",
   bloodGroup: "O+",
   presentAddress: "123 Main Street, Dhaka, Bangladesh",
   permanentAddress: "456 Another Street, Chittagong, Bangladesh",
-  // academicDepartment: "67acb24226b21c377be06744",
-  // academicFaculty: "67acb24226b21c377be06744",
   isDeleted: false,
 };
 
 const CreateAcademicFaculty = () => {
   const [addFaculties] = useAddAcademicFacultiesMutation();
 
-  const { data: dData, isLoading: dIsLoading } =
-    useGetAllSemestersQuery(undefined);
-
-  const departmentOptions = dData?.data?.map((item) => ({
-    value: item._id,
-    label: item.name,
-  }));
+  const { isLoading: dIsLoading } = useGetAllSemestersQuery(undefined);
 
   const { data: academicFacultyData } = useGetAcademicFacultiesQuery(undefined);
 
@@ -72,21 +43,30 @@ const CreateAcademicFaculty = () => {
     label: item.name,
   }));
 
+  const { data: academicDepartmentData } =
+    useGetAllAcademicDepartmentQuery(undefined);
+
+  const academicDepartmentOptions = academicDepartmentData?.data?.map(
+    (item) => ({
+      value: item._id,
+      label: item.name,
+    })
+  );
+
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const facultyData = {
       password: "faculty123",
       faculty: data,
-      // image: data.image,
     };
 
     const formData = new FormData();
     formData.append("data", JSON.stringify(facultyData));
     formData.append("file", data?.image);
 
-    addFaculties(formData);
-
-    console.log(formData);
-    console.log(data);
+    const res = await addFaculties(formData);
+    if (res?.data?.success) {
+      toast(res?.data?.message);
+    }
   };
 
   return (
@@ -154,16 +134,11 @@ const CreateAcademicFaculty = () => {
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <PHSelect
-                options={departmentOptions}
+                options={academicDepartmentOptions}
                 disabled={dIsLoading}
                 name="academicDepartment"
                 label="Academic Department"
               ></PHSelect>
-              {/* <PHInput
-                            type="text"
-                            name="academicDepartment"
-                            label="Academic Department"
-                          ></PHInput> */}
             </Col>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
               <PHSelect

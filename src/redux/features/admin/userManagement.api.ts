@@ -32,7 +32,6 @@ const userManagementApi = baseApi.injectEndpoints({
     }),
     getAllFaculties: builder.query({
       query: (args) => {
-        // console.log(args);
         const params = new URLSearchParams();
 
         if (args) {
@@ -54,6 +53,7 @@ const userManagementApi = baseApi.injectEndpoints({
         };
       },
     }),
+
     addStudent: builder.mutation({
       query: (data) => ({
         url: "/users/create-student",
@@ -61,6 +61,39 @@ const userManagementApi = baseApi.injectEndpoints({
         body: data,
       }),
     }),
+
+    addAdmin: builder.mutation({
+      query: (data) => ({
+        url: "/users/create-admin",
+        method: "POST",
+        body: data,
+      }),
+    }),
+
+    getAllAdmins: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams();
+
+        if (args) {
+          args.forEach((item: TQueryParam) => {
+            params.append(item.name, item.value as string);
+          });
+        }
+
+        return {
+          url: "/admins",
+          method: "GET",
+          params: params,
+        };
+      },
+      transformResponse: (response: TResponseRedux<TStudent[]>) => {
+        return {
+          data: response.data,
+          meta: response.meta,
+        };
+      },
+    }),
+
     changePassword: builder.mutation({
       query: (data) => ({
         url: "/auth/change-password",
@@ -76,4 +109,6 @@ export const {
   useGetAllStudentsQuery,
   useGetAllFacultiesQuery,
   useChangePasswordMutation,
+  useAddAdminMutation,
+  useGetAllAdminsQuery,
 } = userManagementApi;

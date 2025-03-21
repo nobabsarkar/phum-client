@@ -8,6 +8,10 @@ export type TAcademicSemester = {
   createdAt: string;
   updateAt: string;
   __v: number;
+  id: string;
+  fullName: string;
+  email: string;
+  contactNo: string;
 };
 
 export type TAcademicFaculty = {

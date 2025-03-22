@@ -34,7 +34,7 @@ export const adminPaths = [
         element: <CreateAcademicSemester></CreateAcademicSemester>,
       },
       {
-        name: "Academic Semester",
+        name: "Create Semester",
         path: "academic-semester",
         element: <AcademicSemester></AcademicSemester>,
       },

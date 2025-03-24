@@ -7,14 +7,10 @@ const AcademicDepartment = () => {
   const { data: departmentrData, isFetching } =
     useGetAllAcademicDepartmentsQuery(undefined);
 
-  console.log(departmentrData?.data);
-
   const tableData = departmentrData?.data?.map(({ _id, name }) => ({
     key: _id,
     name,
   }));
-
-  // console.log(tableData);
 
   const columns: TableColumnsType = [
     {

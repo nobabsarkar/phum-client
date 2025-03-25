@@ -22,10 +22,6 @@ const AcademicDepartment = () => {
       title: "Academic Faculty",
       dataIndex: "academic fauclty",
     },
-    // {
-    //   title: "UpdatedAt",
-    //   dataIndex: "updatedAt",
-    // },
   ];
 
   const onChange: TableProps["onChange"] = (

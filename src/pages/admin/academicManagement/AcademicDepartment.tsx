@@ -12,6 +12,11 @@ const AcademicDepartment = () => {
     name,
   }));
 
+  // const tableData = departmentrData?.data?.map(({ _id, name }) => ({
+  //   key: _id,
+  //   name,
+  // }));
+
   const columns: TableColumnsType = [
     {
       title: "Academic Department",

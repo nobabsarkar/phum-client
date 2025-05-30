@@ -12,15 +12,18 @@ const AcademicDepartment = () => {
     name,
   }));
 
+  console.log(tableData);
+
   const columns: TableColumnsType = [
     {
       title: "Academic Department",
-      dataIndex: "academic department",
+      dataIndex: "name",
       showSorterTooltip: { target: "full-header" },
     },
     {
       title: "Academic Faculty",
-      dataIndex: "academic fauclty",
+      dataIndex: "name",
+      showSorterTooltip: { target: "full-header" },
     },
   ];
 

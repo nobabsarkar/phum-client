@@ -7,12 +7,13 @@ const AcademicDepartment = () => {
   const { data: departmentrData, isFetching } =
     useGetAllAcademicDepartmentsQuery(undefined);
 
-  const tableData = departmentrData?.data?.map(({ _id, name }) => ({
-    key: _id,
-    name,
-  }));
-
-  console.log(tableData);
+  const tableData = departmentrData?.data?.map(
+    ({ _id, name, academicFaculty }) => ({
+      key: _id,
+      name,
+      fullName: academicFaculty?.name,
+    })
+  );
 
   const columns: TableColumnsType = [
     {
@@ -22,7 +23,7 @@ const AcademicDepartment = () => {
     },
     {
       title: "Academic Faculty",
-      dataIndex: "name",
+      dataIndex: "fullName",
       showSorterTooltip: { target: "full-header" },
     },
   ];

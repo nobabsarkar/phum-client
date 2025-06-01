@@ -12,6 +12,7 @@ export type TAcademicSemester = {
   fullName: string;
   email: string;
   contactNo: string;
+  academicFaculty: TAcademicFaculty;
 };
 
 export type TAcademicDepartment = {

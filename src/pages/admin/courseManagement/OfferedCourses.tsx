@@ -1,7 +1,35 @@
+import { Table, TableColumnsType } from "antd";
+import { TTableData } from "./Course";
+
 const OfferedCourses = () => {
+  const columns: TableColumnsType<TTableData> = [
+    {
+      title: "Title",
+      key: "title",
+      dataIndex: "title",
+    },
+    {
+      title: "Code",
+      key: "code",
+      dataIndex: "code",
+    },
+    {
+      title: "Action",
+      key: "x",
+      render: (item) => {
+        return <AddFacultyModel facultyInfo={item} />;
+      },
+    },
+  ];
+
   return (
     <div>
-      <h1>This is offeredCourse component</h1>
+      <Table
+        //  loading={isFetching}
+        columns={columns}
+        //  dataSource={tableData}
+        //  onChange={onChange}
+      />
     </div>
   );
 };

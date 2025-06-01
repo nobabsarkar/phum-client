@@ -94,6 +94,7 @@ const studentDefaultValues = {
 
 const CreateStudent = () => {
   const [addStudent] = useAddStudentMutation();
+
   const { data: sData, isLoading: sIsLoading } =
     useGetAllSemestersQuery(undefined);
 
@@ -111,12 +112,12 @@ const CreateStudent = () => {
   }));
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
     const faculty = {
       password: "student123",
       student: data,
-      // image: data.image,
     };
+
+    console.log(data);
 
     const formData = new FormData();
     formData.append("data", JSON.stringify(faculty));

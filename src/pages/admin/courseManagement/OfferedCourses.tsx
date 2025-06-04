@@ -1,6 +1,7 @@
 import { Table, TableColumnsType } from "antd";
 import { TTableData } from "./Course";
 
+// add faculty
 const OfferedCourses = () => {
   const columns: TableColumnsType<TTableData> = [
     {

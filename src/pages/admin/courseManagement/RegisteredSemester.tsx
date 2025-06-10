@@ -27,11 +27,8 @@ const items = [
 const RegisteredSemesters = () => {
   const [semesterId, setSemesterId] = useState("");
 
-  const {
-    data: semesterData,
-
-    isFetching,
-  } = useGetAllRegisteredSemestersQuery(undefined);
+  const { data: semesterData, isFetching } =
+    useGetAllRegisteredSemestersQuery(undefined);
 
   const [updateSemesterStatus] = useUpdateRegisterSemesterMutation();
 

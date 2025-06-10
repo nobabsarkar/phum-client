@@ -4,23 +4,33 @@ import { TTableData } from "./Course";
 const OfferedCourses = () => {
   const columns: TableColumnsType<TTableData> = [
     {
-      title: "Title",
-      key: "title",
-      dataIndex: "title",
+      title: "Semester Registration",
+      key: "remester registration",
+      dataIndex: "semester registration",
     },
     {
-      title: "Code",
-      key: "code",
-      dataIndex: "code",
+      title: "Academic Semester",
+      key: "academic semester",
+      dataIndex: "academic semester",
     },
     {
-      title: "Action",
-      key: "x",
-      render: (item) => {
-        // return <AddFacultyModel facultyInfo={item} />;
-        return <h1>Offered Course</h1>;
-      },
+      title: "Academic Faculty",
+      key: "academic faculty",
+      dataIndex: "academic faculty",
     },
+    {
+      title: "Academic Department",
+      key: "academic department",
+      dataIndex: "academic department",
+    },
+    // {
+    //   title: "Action",
+    //   key: "x",
+    //   render: (item) => {
+    //     // return <AddFacultyModel facultyInfo={item} />;
+    //     return <h1>Offered Course</h1>;
+    //   },
+    // },
   ];
 
   return (

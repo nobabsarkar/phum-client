@@ -131,6 +131,25 @@ const courseManagementApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["courses"],
     }),
+
+    offeredCourse: builder.query({
+      query: () => {
+        const params = new URLSearchParams();
+
+        return {
+          url: "/offered-courses",
+          method: "GET",
+          params: params,
+        };
+      },
+      providesTags: ["courses"],
+      transformResponse: (response: TResponseRedux<TSemester[]>) => {
+        return {
+          data: response.data,
+          meta: response.meta,
+        };
+      },
+    }),
   }),
 });
 
@@ -144,4 +163,5 @@ export const {
   useGetAllAcademicDepartmentQuery,
   useGetCourseFacultiesQuery,
   useCreateOfferedCourseMutation,
+  useOfferedCourseQuery,
 } = courseManagementApi;

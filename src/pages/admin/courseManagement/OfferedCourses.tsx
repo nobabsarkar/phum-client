@@ -1,7 +1,17 @@
 import { Table, TableColumnsType } from "antd";
 import { TTableData } from "./Course";
+import { useOfferedCourseQuery } from "../../../redux/features/admin/courseManagement";
 
 const OfferedCourses = () => {
+  const { data: offeredData, isFetching } = useOfferedCourseQuery(undefined);
+
+  console.log(offeredData);
+
+  const tableData = offeredData?.data?.map(({ _id, semesterRegistration }) => ({
+    key: _id,
+    name: semesterRegistration?.name,
+  }));
+
   const columns: TableColumnsType<TTableData> = [
     {
       title: "Semester Registration",
@@ -36,9 +46,9 @@ const OfferedCourses = () => {
   return (
     <div>
       <Table
-        // loading={isFetching}
+        loading={isFetching}
         columns={columns}
-        // dataSource={tableData}
+        dataSource={tableData}
         // onChange={onChange}
       />
     </div>

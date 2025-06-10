@@ -17,7 +17,7 @@ const OfferedCourses = () => {
       title: "Action",
       key: "x",
       render: (item) => {
-        return <AddFacultyModel facultyInfo={item} />;
+        return <h1>Offered Course</h1>;
       },
     },
   ];

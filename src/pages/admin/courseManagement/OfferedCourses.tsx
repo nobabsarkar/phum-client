@@ -25,10 +25,10 @@ const OfferedCourses = () => {
   return (
     <div>
       <Table
-        loading={isFetching}
+        // loading={isFetching}
         columns={columns}
-        dataSource={tableData}
-        onChange={onChange}
+        // dataSource={tableData}
+        // onChange={onChange}
       />
     </div>
   );

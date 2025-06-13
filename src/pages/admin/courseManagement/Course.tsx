@@ -12,6 +12,14 @@ import PHSelect from "../../../components/form/PHSelect";
 import { useGetAllFacultiesQuery } from "../../../redux/features/admin/userManagement.api";
 export type TTableData = Pick<TSemester, "startDate" | "endDate" | "status">;
 
+export type OfferedCourseTableRow = {
+  key: string;
+  academicDepartment: string;
+  semesterRegistration: string;
+  academicSemester: string;
+  academicFaculty: string;
+};
+
 const Courses = () => {
   const { data: courses, isFetching } = useGetAllCoursesQuery(undefined);
 

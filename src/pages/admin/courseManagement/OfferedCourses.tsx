@@ -1,37 +1,49 @@
 import { Table, TableColumnsType } from "antd";
-import { TTableData } from "./Course";
+import { OfferedCourseTableRow } from "./Course";
 import { useOfferedCourseQuery } from "../../../redux/features/admin/courseManagement";
+import { TOfferedCourse } from "../../../types/studentCourse.type";
 
 const OfferedCourses = () => {
   const { data: offeredData, isFetching } = useOfferedCourseQuery(undefined);
 
-  console.log(offeredData);
+  const tableData = Array.isArray(offeredData?.data?.result)
+    ? (offeredData?.data?.result as TOfferedCourse[])?.map(
+        ({
+          _id,
+          academicDepartment,
+          semesterRegistration,
+          academicSemester,
+          academicFaculty,
+        }) => ({
+          key: _id,
+          academicDepartment: academicDepartment?.name,
+          semesterRegistration: semesterRegistration?.status,
+          academicSemester: academicSemester?.name,
+          academicFaculty: academicFaculty?.name,
+        })
+      )
+    : [];
 
-  const tableData = offeredData?.data?.map(({ _id, semesterRegistration }) => ({
-    key: _id,
-    name: semesterRegistration?.name,
-  }));
-
-  const columns: TableColumnsType<TTableData> = [
+  const columns: TableColumnsType<OfferedCourseTableRow> = [
+    {
+      title: "Academic Department",
+      key: "academic department",
+      dataIndex: "academicDepartment",
+    },
     {
       title: "Semester Registration",
       key: "remester registration",
-      dataIndex: "semester registration",
+      dataIndex: "semesterRegistration",
     },
     {
       title: "Academic Semester",
       key: "academic semester",
-      dataIndex: "academic semester",
+      dataIndex: "academicSemester",
     },
     {
       title: "Academic Faculty",
       key: "academic faculty",
-      dataIndex: "academic faculty",
-    },
-    {
-      title: "Academic Department",
-      key: "academic department",
-      dataIndex: "academic department",
+      dataIndex: "academicFaculty",
     },
     // {
     //   title: "Action",

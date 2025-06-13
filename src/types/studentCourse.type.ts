@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 export type TOfferedCourse = {
   _id: string;
-  semesterRegistration: string;
-  academicSemester: string;
-  academicFaculty: string;
-  academicDepartment: string;
+  // semesterRegistration: string;
+  // academicSemester: string;
+  // academicFaculty: string;
+  // academicDepartment: string;
   course: TCourse;
   faculty: string;
   maxCapacity: number;
@@ -20,6 +21,11 @@ export type TOfferedCourse = {
   completedCourseIds: any[];
   isPreRequisitesFulFilled: boolean;
   isAlreadyEnrolled: boolean;
+
+  semesterRegistration: { _id: string; status: string };
+  academicSemester: { _id: string; name: string };
+  academicFaculty: { _id: string; name: string };
+  academicDepartment: { _id: string; name: string };
 };
 
 export type TCourse = {

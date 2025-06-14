@@ -6,6 +6,7 @@ import { TOfferedCourse } from "../../../types/studentCourse.type";
 const OfferedCourses = () => {
   const { data: offeredData, isFetching } = useOfferedCourseQuery(undefined);
 
+  // typescript result error
   const tableData = Array.isArray(offeredData?.data?.result)
     ? (offeredData?.data?.result as TOfferedCourse[])?.map(
         ({

@@ -98,6 +98,8 @@ const CreateStudent = () => {
   const { data: sData, isLoading: sIsLoading } =
     useGetAllSemestersQuery(undefined);
 
+  console.log(sData);
+
   const { data: dData, isLoading: dIsLoading } =
     useGetAllSemestersQuery(undefined);
 
@@ -116,8 +118,6 @@ const CreateStudent = () => {
       password: "student123",
       student: data,
     };
-
-    console.log(data);
 
     const formData = new FormData();
     formData.append("data", JSON.stringify(faculty));

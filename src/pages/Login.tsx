@@ -2,8 +2,9 @@ import { Button, Row } from "antd";
 import { FieldValues } from "react-hook-form";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hook";
-import { setUser, TUser } from "../redux/features/auth/authSlice";
-import { verifyToken } from "../utils/verifyToken";
+// import { setUser, TUser } from "../redux/features/auth/authSlice";
+import { setUser } from "../redux/features/auth/authSlice";
+import { TDecodedUser, verifyToken } from "../utils/verifyToken";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import PHForm from "../components/form/PHForm";
@@ -29,7 +30,7 @@ const Login = () => {
       };
       const res = await login(userInfo).unwrap();
 
-      const user = verifyToken(res?.data?.accessToken) as TUser;
+      const user = verifyToken(res?.data?.accessToken) as TDecodedUser;
       dispatch(setUser({ user: user, token: res.data.accessToken }));
       toast.success("Logged in", { id: toastId, duration: 2000 });
 

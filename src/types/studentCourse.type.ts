@@ -26,6 +26,7 @@ export type TOfferedCourse = {
   academicSemester: { _id: string; name: string };
   academicFaculty: { _id: string; name: string };
   academicDepartment: { _id: string; name: string };
+  result: any;
 };
 
 export type TCourse = {

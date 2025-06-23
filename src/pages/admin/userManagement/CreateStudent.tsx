@@ -98,8 +98,6 @@ const CreateStudent = () => {
   const { data: sData, isLoading: sIsLoading } =
     useGetAllSemestersQuery(undefined);
 
-  console.log(sData);
-
   const { data: dData, isLoading: dIsLoading } =
     useGetAllSemestersQuery(undefined);
 

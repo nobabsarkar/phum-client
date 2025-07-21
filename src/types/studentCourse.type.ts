@@ -26,7 +26,6 @@ export type TOfferedCourse = {
   academicSemester: { _id: string; name: string };
   academicFaculty: { _id: string; name: string };
   academicDepartment: { _id: string; name: string };
-  result: any;
 };
 
 export type TCourse = {
@@ -38,4 +37,10 @@ export type TCourse = {
   preRequisiteCourses: any[];
   isDeleted: boolean;
   __v: number;
+};
+
+export type TOfferedDataResponse = {
+  data: {
+    result: TOfferedCourse[];
+  };
 };

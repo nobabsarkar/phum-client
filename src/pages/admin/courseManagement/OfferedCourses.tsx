@@ -1,10 +1,18 @@
 import { Table, TableColumnsType } from "antd";
 import { OfferedCourseTableRow } from "./Course";
 import { useOfferedCourseQuery } from "../../../redux/features/admin/courseManagement";
-import { TOfferedCourse } from "../../../types/studentCourse.type";
+import {
+  TOfferedCourse,
+  TOfferedDataResponse,
+} from "../../../types/studentCourse.type";
 
 const OfferedCourses = () => {
-  const { data: offeredData, isFetching } = useOfferedCourseQuery(undefined);
+  const { data: offeredData, isFetching } = useOfferedCourseQuery(
+    undefined
+  ) as {
+    data?: TOfferedDataResponse;
+    isFetching: boolean;
+  };
 
   const tableData = Array.isArray(offeredData?.data?.result)
     ? (offeredData?.data?.result as TOfferedCourse[])?.map(
@@ -45,14 +53,15 @@ const OfferedCourses = () => {
       key: "academic faculty",
       dataIndex: "academicFaculty",
     },
-    {
-      title: "Action",
-      key: "x",
-      render: (item) => {
-        return <AddFacultyModel facultyInfo={item} />;
-        return <h1>Offered Course</h1>;
-      },
-    },
+    // {
+    //   title: "Action",
+    //   key: "x",
+    //   render: (item) => {
+    //     // return <AddFacultyModel facultyInfo={item} />;
+    //     return <OfferCourse facultyInfo={item} />;
+    //     // return <h1>Offered Course</h1>;
+    //   },
+    // },
   ];
 
   return (

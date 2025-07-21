@@ -19,8 +19,8 @@ const SemesterRegistration = () => {
   ]);
 
   const academicSemesterOptions = academicSemester?.data?.map((item) => ({
-    value: item._id,
-    label: `${item.name} ${item.year}`,
+    value: item?._id,
+    label: `${item?.name} ${item?.year}`,
   }));
 
   // submit data

@@ -10,6 +10,7 @@ type TCourse = {
   [index: string]: any;
 };
 
+// offered course component
 const OfferedCourse = () => {
   const { data: offeredCourseData } = useGetAllOfferedCoursesQuery(undefined);
   const [enroll] = useEnrolCourseMutation();

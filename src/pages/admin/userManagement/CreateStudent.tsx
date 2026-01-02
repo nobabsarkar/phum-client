@@ -8,90 +8,6 @@ import PHDatePicker from "../../../components/form/PHDatePicker";
 import { bloodGroupOptions, genderOptions } from "../../../types";
 import PHForm from "../../../components/form/PHForm";
 
-// const studentDummyData = {
-//   password: "student123",
-//   student: {
-//     name: {
-//       firstName: "Samin",
-//       middleName: "Israt",
-//       lastName: "Ravi",
-//     },
-//     gender: "male",
-//     dateOfBirth: "2000-05-15",
-//     bloodGroup: "A+",
-
-//     email: "abcd@gmail.com",
-//     contactNo: "1234567",
-//     emergencyContactNo: "0987654321",
-//     presentAddress: "123 Main St, Springfield, IL",
-//     permanentAddress: "456 Elm St, Springfield, IL",
-
-//     guardian: {
-//       fatherName: "Robert Doe",
-//       fatherContactNo: "1122334455",
-//       fatherOccupation: "Engineer",
-//       motherName: "Jane Doe",
-//       motherContactNo: "2233445566",
-//       motherOccupation: "Teacher",
-//     },
-
-//     localGuardian: {
-//       name: "William Smith",
-//       occupation: "Lawyer",
-//       contactNo: "3344556677",
-//       address: "789 Oak St, Springfield, IL",
-//     },
-
-//     admissionSemester: "6729c359969b35afdfb427a0",
-//     academicDepartment: "674d5f58dfd6a8b6cc2e9a0a",
-//     profileImage: "http://example.com/images/profile.jpg",
-//   },
-// };
-
-// This is only for development
-// should be removed
-
-// default data
-const studentDefaultValues = {
-  password: "student123",
-
-  name: {
-    firstName: "Samin",
-    middleName: "Israt",
-    lastName: "Ravi",
-  },
-
-  gender: "male",
-  // dateOfBirth: "2000-05-15",
-  bloodGroup: "A+",
-
-  // email: "abcd@gmail.com",
-  contactNo: "1234567",
-  emergencyContactNo: "0987654321",
-  presentAddress: "123 Main St, Springfield, IL",
-  permanentAddress: "456 Elm St, Springfield, IL",
-
-  guardian: {
-    fatherName: "Robert Doe",
-    fatherContactNo: "1122334455",
-    fatherOccupation: "Engineer",
-    motherName: "Jane Doe",
-    motherContactNo: "2233445566",
-    motherOccupation: "Teacher",
-  },
-
-  localGuardian: {
-    name: "William Smith",
-    occupation: "Lawyer",
-    contactNo: "3344556677",
-    address: "789 Oak St, Springfield, IL",
-  },
-
-  // admissionSemester: "6729c359969b35afdfb427a0",
-  // academicDepartment: "674d5f58dfd6a8b6cc2e9a0a",
-  // profileImage: "http://example.com/images/profile.jpg",
-};
-
 const CreateStudent = () => {
   const [addStudent] = useAddStudentMutation();
 
@@ -126,7 +42,7 @@ const CreateStudent = () => {
   return (
     <Row>
       <Col span={24}>
-        <PHForm onSubmit={onSubmit} defaultValues={studentDefaultValues}>
+        <PHForm onSubmit={onSubmit}>
           {/*  */}
           <Divider>Personal Info</Divider>
           <Row gutter={8}>

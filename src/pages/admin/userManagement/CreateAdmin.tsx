@@ -8,24 +8,6 @@ import { bloodGroupOptions, genderOptions } from "../../../types";
 import { useAddAdminMutation } from "../../../redux/features/admin/userManagement.api";
 import { toast } from "sonner";
 
-const admin = {
-  designation: "Admin",
-  name: {
-    firstName: "Mr Nobab",
-    middleName: "Sarkar",
-    lastName: "Shanto",
-  },
-  gender: "male",
-  dateOfBirth: "",
-  bloogGroup: "A-",
-  // email: "nobabsarkar2020@gmail.com",
-  contactNo: "1234567890",
-  emergencyContactNo: "0987654321",
-  presentAddress: "123 Main Street, City, Country",
-  permanentAddress: "456 Elm Street, City, Country",
-  profileImg: "https://example.com/profile.jpg",
-};
-
 const CreateAdmin = () => {
   const [addAdmin] = useAddAdminMutation();
 
@@ -48,7 +30,7 @@ const CreateAdmin = () => {
   return (
     <Row>
       <Col span={24}>
-        <PHForm onSubmit={onSubmit} defaultValues={admin}>
+        <PHForm onSubmit={onSubmit}>
           {/*  */}
           <Divider>Personal Info</Divider>
           <Row gutter={8}>

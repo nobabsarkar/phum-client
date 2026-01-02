@@ -13,24 +13,6 @@ import {
 import { useGetAllAcademicDepartmentQuery } from "../../../redux/features/admin/courseManagement";
 import { toast } from "sonner";
 
-const facultyDefaultValues = {
-  name: {
-    firstName: "John",
-    middleName: "A.",
-    lastName: "Doe",
-  },
-  designation: "Teacher",
-  gender: "male",
-  dateOfBirth: "",
-  email: "johndoe5@example.com",
-  contactNo: "+8801712345678",
-  emergencyContactNo: "+8801812345678",
-  bloodGroup: "O+",
-  presentAddress: "123 Main Street, Dhaka, Bangladesh",
-  permanentAddress: "456 Another Street, Chittagong, Bangladesh",
-  isDeleted: false,
-};
-
 const CreateFaculty = () => {
   const [addFaculties] = useAddAcademicFacultiesMutation();
 
@@ -72,7 +54,7 @@ const CreateFaculty = () => {
   return (
     <Row>
       <Col span={24}>
-        <PHForm onSubmit={onSubmit} defaultValues={facultyDefaultValues}>
+        <PHForm onSubmit={onSubmit}>
           {/*  */}
           <Divider>Personal Info</Divider>
           <Row gutter={8}>
